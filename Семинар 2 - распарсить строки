@@ -1,0 +1,32 @@
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
+
+public class ParseString {
+    public static void main(String[] args) {
+        String filename = "data.txt";
+
+        try {
+            BufferedReader reader = new BufferedReader(new FileReader(filename));
+            String line;
+            while ((line = reader.readLine()) != null) {
+                String[] parts = line.split(",");
+                String surname = parts[0].split(":")[1].replace("\"", "");
+                String mark = parts[1].split(":")[1].replace("\"", "");
+                String subject = parts[2].split(":")[1].replace("\"", "");
+                StringBuilder sb = new StringBuilder();
+                sb.append("Студент ");
+                sb.append(surname);
+                sb.append(" получил ");
+                sb.append(mark);
+                sb.append(" по предмету ");
+                sb.append(subject);
+                sb.append(".");
+                System.out.println(sb.toString());
+            }
+            reader.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+}
