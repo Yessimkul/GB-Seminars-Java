@@ -1,0 +1,6 @@
+public static <T> LinkedList<T> reverseList(LinkedList<T> list) {
+    LinkedList<T> reversedList = new LinkedList<T>();
+    for (T element : list) {
+        reversedList.addFirst(element);
+    }
+    return reversedList;
