@@ -1,0 +1,33 @@
+import java.util.*;
+
+public class Main {
+    public static void main(String[] args) {
+        List<String> employees = Arrays.asList(
+            "Иван Иванов", "Светлана Петрова", "Кристина Белова",
+            "Анна Мусина", "Анна Крутова", "Иван Юрин", "Петр Лыков",
+            "Павел Чернов", "Петр Чернышов", "Мария Федорова",
+            "Марина Светлова", "Мария Савина", "Мария Рыкова",
+            "Марина Лугова", "Анна Владимирова", "Иван Мечников",
+            "Петр Петин", "Иван Ежов");
+
+        // создаем HashMap для хранения количества повторений имен
+        Map<String, Integer> nameCount = new HashMap<>();
+
+        // проходимся по списку сотрудников и заполняем HashMap
+        for (String employee : employees) {
+            String name = employee.split(" ")[0]; // получаем имя сотрудника
+            nameCount.put(name, nameCount.getOrDefault(name, 0) + 1); // увеличиваем количество повторений имени
+        }
+
+        // создаем список элементов HashMap и сортируем его по убыванию количества повторений имени
+        List<Map.Entry<String, Integer>> sortedEntries = new ArrayList<>(nameCount.entrySet());
+        sortedEntries.sort(Collections.reverseOrder(Map.Entry.comparingByValue()));
+
+        // выводим результат на экран
+        for (Map.Entry<String, Integer> entry : sortedEntries) {
+            if (entry.getValue() > 1) { // выводим только повторяющиеся имена
+                System.out.println(entry.getKey() + ": " + entry.getValue());
+            }
+        }
+    }
+}
